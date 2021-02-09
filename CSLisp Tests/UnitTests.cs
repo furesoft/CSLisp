@@ -587,8 +587,8 @@ namespace CSLisp
             CompileAndRun(ctx, "(begin (set! x '(1 2 3 4 5)) (list (after-first x) (after-second x) (after-third x)))", "((2 3 4 5) (3 4 5) (4 5))");
             CompileAndRun(ctx, "(set! add (let ((sum 0)) (lambda (delta) (set! sum (+ sum delta)) sum))) (add 0) (add 100) (add 0)", "[Closure]", "0", "100", "100");
 
-            CompileAndRun(ctx, "(make-vector 3)", "()");
-            CompileAndRun(ctx, "(make-vector '(1 2))", "(1 2)");
+            CompileAndRun(ctx, "(make-vector 3)", "(Vector 0 0 0)");
+            CompileAndRun(ctx, "(make-vector '(1 2))", "(Vector 1 2)");
 
             CompileAndRun(ctx, "(get-vector-length (make-vector '(1 2)))", "2");
             CompileAndRun(ctx, "(get-vector-element (make-vector '(1 2)) 0)", "1");

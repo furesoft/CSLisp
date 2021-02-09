@@ -201,17 +201,17 @@ namespace CSLisp.Core
 
             new Primitive("make-vector", 1, new Function((Context ctx, Val a) => {
                 if(a.IsNumber) {
-                    return new Val( new List<Val>(Enumerable.Repeat((Val)0, a.AsInt)));
+                    return new Val( new Vector(Enumerable.Repeat((Val)0, a.AsInt)));
                 }
                 else if(a.IsCons) {
-                    return new Val( new List<Val>(a.AsCons.ToNativeList()));
+                    return new Val( new Vector(a.AsCons.ToNativeList()));
                 }
 
                 return Val.NIL;
             })),
 
              new Primitive("get-vector-length", 1, new Function((Context ctx, Val a) => {
-                if(a.AsObjectOrNull != null && a.AsObjectOrNull is List<Val> vector) {
+                if(a.AsObjectOrNull != null && a.AsObjectOrNull is Vector vector) {
                      return vector.Count;
                  }
 
@@ -219,7 +219,7 @@ namespace CSLisp.Core
             })),
 
               new Primitive("get-vector-element", 2, new Function((Context ctx, Val v, Val index) => {
-                if(v.AsObjectOrNull != null && v.AsObjectOrNull is List<Val> vector) {
+                if(v.AsObjectOrNull != null && v.AsObjectOrNull is Vector vector) {
                      return vector[index.AsInt];
                  }
 
@@ -227,7 +227,7 @@ namespace CSLisp.Core
             })),
 
               new Primitive("set-vector-element!", 3, new Function((Context ctx, Val v, Val index, Val value) => {
-                if(v.AsObjectOrNull != null && v.AsObjectOrNull is List<Val> vector) {
+                if(v.AsObjectOrNull != null && v.AsObjectOrNull is Vector vector) {
                      vector[index.AsInt] = value;
 
                       return new Val(vector);
